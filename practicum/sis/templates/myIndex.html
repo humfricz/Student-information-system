@@ -1,0 +1,117 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>MSIT- System Information System</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "sis/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{% static "sis/css/mdb.min.css" %}" rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="{% static "sis/css/style.css" %}" rel="stylesheet">
+
+</head>
+
+<p><u><a href="help.html" target="_blank">happy to help</a></u></p>
+<body>
+    
+
+    <!-- Start your project here-->
+    <div>
+       <div style="border:solid;margin-left:10%;margin-right:10%; margin-top:2%;">
+           <!-- this is for headings of the web page like letter head-->
+           <h1> &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp International Institute of Information Technology<br>
+           <center>MSIT</center></h1>
+
+       </div>
+
+       <div style="margin-top:9%;margin-left:15%;margin-right:60%;align:left;">
+           <h3><center>Staff Login</center></h3>
+           <div style="border:solid;">
+              <form class="form-inline" style="margin-left:10%;margin-top:8%;" method="POST" action="/sis/home" >  {% csrf_token %}
+              <!-- <INPUT type="text" name="sample" /> -->
+               <div class="md-form form-group">
+                      <i class="fa fa-user prefix"></i>
+                      <input name = "username" type="text" id="form91" class="form-control validate">
+                      <label for="form91" >Type your Username</label>
+                  </div>
+
+                  <div class="md-form form-group">
+                      <i class="fa fa-lock prefix"></i>
+                      <input name = "password" type="password" id="form92" class="form-control validate">
+                      <label for="form92" >Type your password</label>
+                  </div>
+                  <!-- <input  class= "btn btn-primary waves-effect waves-light" type="submit" name="submit" value="submit" /> -->
+                  <div>
+                  {% if invalid %}
+                          <p style="color: red;margin-left:20%;">Invalid credentials</p>
+                  {% endif %}
+                  </div>
+                  <button class="btn btn-primary " type="submit" name="submit" style="margin-left:30%;">Login</button>
+              </form>
+          </div>
+      </div>
+
+
+           <div style="margin-top:-19%;margin-left:55%;margin-right:20%;align:right;height:150%;">
+           
+              <h3><center>Students Use</center></h3>
+
+               <div style="border:solid;">
+               <form class="form-inline" style="margin-left:10%;margin-top:8%;" method="POST" action="/sis/studentlogin" >{% csrf_token %}
+                  <!-- <INPUT type="text" name="sample" /> -->
+                   <div class="md-form form-group">
+
+                          <i class="fa fa-user prefix"></i>
+                          <input name = "studentname" type="number" id="form92" class="form-control validate">
+                          <label for="form92" >Enter number here</label>
+                       </div>
+                          <div>
+                       {% if Wrong %}
+                              <p style="color: red;margin-left:20%;">Invalid number</p>
+                       {% endif %}
+                       </div>
+                       <button class="btn btn-primary " type="submit" name="submit" style="margin-left:30%;">Enter</button>
+                   </form>
+                   <div id="blink">
+                       {% if status %}
+                           <center><p style="color:green;"><br> {{status}} </p></center>
+                       {% endif %}
+                   </div>
+                   </div>
+                   
+               </div>
+   </div>
+    <!-- /Start your project here-->
+    
+
+    <!-- SCRIPTS -->
+
+    <!-- JQuery -->
+    <script type="text/javascript" src=" {% static "sis/js/jquery-2.2.3.min.js" %}"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static "sis/js/tether.min.js" %}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static "sis/js/bootstrap.min.js" %}"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static "sis/js/mdb.min.js" %}"></script>
+
+
+</body>
+
+</html>

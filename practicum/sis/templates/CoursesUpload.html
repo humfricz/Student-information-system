@@ -1,0 +1,85 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+​
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>Uploading....</title>
+​
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+​
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "sis/css/bootstrap.min.css" %}" rel="stylesheet">
+​
+    <!-- Material Design Bootstrap -->
+    <link href="{% static "sis/css/mdb.min.css" %}" rel="stylesheet">
+​
+    <!-- Your custom styles (optional) -->
+    <link href="{% static "sis/css/indexStyle.css" %}" rel="stylesheet">
+​
+</head>
+​
+<body>
+    <!-- Start your project here-->
+    <div>
+        <div style="display:flex;">
+        <!-- for title and logos -->
+        <!-- for iiit-logo  -->
+            <div >
+                <img src="{% static "sis/img/logos/iiit-logo.png" %}" alt="iiit-logo" width="175" height="100">
+            </div>
+​
+            <div style="margin-top:2%; margin-left:5%;">
+            <!-- this is for headings of the web page like letter head-->
+                <h2> &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp International Institute of Information Technology<br>
+                <center>MSIT</center></h2>
+​
+            </div>
+        <!-- for MSIT-logo  -->
+        <!-- <div style="margin-left:3%;">
+            <img src="{% static "sis/img/logos/MSIT-logo.png" %}" alt="MSIT-logo" width="220" height="130">
+        </div> -->
+        </div>
+        <h4 style="margin-left:15%;margin-top:5%;padding-top:5%;"> <u><b>Upload the courses file</b></u></h4>
+        <div style=" margin-left:15%;margin-right:10%;margin-bottom:50%;">
+        
+            <form action="{% url "courseList" %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                <p>{{ form.non_field_errors }}</p>
+​
+                <p>{{ form.coursefile.label_tag }} {{ form.coursefile.help_text }}</p>
+                <p>
+                    {{ form.coursefile.errors }}
+                    {{ form.coursefile }}
+                </p>
+                <p><input class= "btn btn-primary" style="background:blue;height:30px;"  type="submit" value="Upload Courses"/></p>
+            </form>
+​
+        </div>
+    </div>
+    <!-- /Start your project here-->
+    
+​
+    <!-- SCRIPTS -->
+​
+    <!-- JQuery -->
+    <script type="text/javascript" src=" {% static "sis/js/jquery-2.2.3.min.js" %}"></script>
+​
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static "sis/js/tether.min.js" %}"></script>
+​
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static "sis/js/bootstrap.min.js" %}"></script>
+​
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static "sis/js/mdb.min.js" %}"></script>
+​
+​
+</body>
+​
+</html>

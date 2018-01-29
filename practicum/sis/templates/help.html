@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<title>Help desk</title>
+<h1>Happy to Help</h1>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>SIS</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "sis/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{% static "sis/css/mdb.min.css" %}"rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="{% static "sis/css/homeStyle.css" %}"rel="stylesheet">
+
+</head>
+<body>
+	<h2>Welcome to Information Systems help desk: Know how to use portal here</h2>
+    <div class="well well-sm">
+        <h4> <br><b>Support Team : Batch(2015-2017) </b><br><br>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <a href=""> Tarun Vasarla : tarunuv@gmail.com</a>
+                </div>
+                <div class="list-group-item">
+                    <a href=""> Venkatesh Ejjagiri : venkateshejjagiri@gmail.com</a>
+
+                </div >
+                <div class="list-group-item">
+                    <a href=""> Sai Manjunath : saimanjunath.gaddale@gmail.com</a>
+                </div>
+                <div class="list-group-item">
+                    <a href=""> Manoj Palaparthi : manojpalaparthi94@gmail.com</a>
+                </div>
+                
+            </div>
+        </h4>  
+    </div>
+
+    <div class="well">
+        <p><font size="4">
+            <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Student Info</b></button>: By entering particular student ID no and click on search button will give the information of student like roll no, First name and Last name etc.</font><br><br>
+        <b><font color="blue" size="4">Note*: You need to enter proper credentials before clicking on Student info button.</font></b><br>
+        </p>
+    </div>
+    <div class="well">
+        <p><font size="4">
+        <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Batch Info</b></button>: By entering particular student ID no and click on search button will give you the information of whole batch along with searched ID no.</font><br><br>
+        <b><font color="blue" size="4">Note*: You need to enter ID and search before clicking on batch info button.</font></b><br>
+        </p>
+    </div>
+    <div class="well">
+        <p>
+        <font size="4">
+        <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Marks Sheet</b></button>: By entering particular student ID no and click on search button will give the information of name, Id, CGPA, grades and credits of enrolled courses.</font><br><br>  
+        <b><font color="blue" size="4">Note*: You need to enter ID and search before clicking on Marks sheet info button.</font></b><br>
+        </p>
+    </div>
+    <div class="well">
+        <p>
+            <font size="4">
+            <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Print Transcript</b></button>: By entering particular student ID no and click on search button will give the information of name, Id, CGPA, grades and credits of enrolled courses.</font><br><br>
+            <b><font color="blue" size="4">Note*: You need to enter ID and search before clicking on print transcript button.</font></b><br>
+        </p>
+    </div>
+    <div class="well">
+        <p>
+            <font size="4">
+            <button class="btn btn-success waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Grading criteria</b></button>: By entering particular Batch (Ex: 2015)  and Grade ( EX:10.0,A+:9.5,A:9.0,B+:8.5,B:8.0,B-:7.5,C:7.0 ) click on Enter button will store the information in database.</font><br><br>
+            <b><font color="blue" size="4">Note*: You need to enter batch no and grade using mentioned format before clicking on enter button.</font></b><br>
+        </p>
+    </div>
+    <div class="well">
+        <p>
+        <font size="4">
+        <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Upload Students</b></button>: By clicking on upload students button you will be redirected to file upload page where user can upload student enrollment list click on Enter button will store the information of enrollment in database.</font><br><br>
+        <b><font color="blue" size="4">Note*: You need to upload only csv file in a given format. If not your file cant be uploaded.</font></b><br>
+        </p>
+    </div>
+    <div class="well">
+        <font size="4">
+        <p>
+        <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Upload courses</b></button>: By clicking on upload courses button you will be redirected to file upload page where user can upload courses enrolled list and a click on Enter button will store the information of enrolled courses in database.</font><br><br> 
+        <b><font color="blue" size="4">Note*: You need to upload only csv file in a given format. If not your file cant be uploaded.</font></b><br>
+        </p>
+    </font>
+    </div>
+    <div class="well">
+        
+        <p><font size="4">
+        <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Upload Scores</b></button>: By clicking on upload scores button you will be redirected to file upload page where user can upload scores of students in enrolled courses list and a click on Enter button will store the information of scores in database.</font><br><br>  
+        <b><font color="blue" size="4">Note*: You need to upload only csv file in a given format. If not your file cant be uploaded.</font></b><br>
+        </p>
+    </div>
+    <div class="well">
+        <font size="4">
+        <p>
+        <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Change password</b></button>: By clicking on change password button you will be able to change password if you want change password and changed password will be updated in database.<font size="6"> <br>
+        <b><font color="blue" size="4">Note*: use passwords which can be easily remembered.</font></b><br>
+        </p>
+        </font>
+    </div>
+    <div class="well">
+        <p><font size="4"><button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Logout</b></button>: By clicking on Logout button you will be redirected to landing page.</font></p> 
+    </div>
+
+</body>
+</html>

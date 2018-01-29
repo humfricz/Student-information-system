@@ -1,0 +1,18 @@
+{% extends "home.html" %}
+{% block sidebar %}
+	{% if username != null %}
+<<<<<<< HEAD
+	<br><br>
+=======
+		<br><br>
+		<a href="/mymusic/logout/"><input type="submit" value = "logout"></a>
+		<hr>
+>>>>>>> a3ade425545386a836b67215b262a53666ccff6f
+		<a href="/mymusic/playlist/"><input type="submit" value = "Playlist"></a>
+	{% else %}
+		<a href="/mymusic/login">yu need to log in to view the playlist</a>
+	{% endif %}
+{% endblock %}
+
+
+

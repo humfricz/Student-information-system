@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+{% block content %}
+
+	{% if form.errors %}
+	<p class = "error">Sorry, that's not a valid username or password</p>
+	{% endif %}
+
+	<form action="/mymusic/admin_auth/" method="post">{% csrf_token %}
+		<label for="username">ADMIN USER NAME:</label>
+		<input typle="text" name="username" value="" id="username">
+		<label for="password">PASSWORD:</label>
+		<input type="password" name="password" value="" id="password">
+		<input type="submit" value="login" />
+	</form>
+
+{% endblock %}

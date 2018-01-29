@@ -1,0 +1,20 @@
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>Minimal Django File Upload Example</title>
+    </head>
+	<body>
+		<form action="{% url "Doc" %}" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="submit" value="Documents"><br><br>
+		</form>
+		<form action="{% url "Marks" %}" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="submit" value="Marks"><br><br>
+		</form>
+		<form action="{% url "Course" %}" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="submit" value="Courses"><br><br>
+		</form>		
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script src ="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <title>Registration form</title>
+    </head>
+    <body  background = "/static/transcriptG/images/background1.jpg">
+        <div align = "center"><img src = "/static/transcriptG/images/msitlogo1.jpg" height = "15%" width = "30%"></div>
+        <h1 align = "center">Registration form</h1>
+        <form action="/transcriptG/validate/" method="GET">
+            <div align = "center">
+                {% csrf_token %}
+                First name: <input type = "text" id = "fn" name="First_name"><br>
+                <br>
+                Last name: <input type = "text" id = "ln" name ="Last_name"><br>
+                <br>
+                Email id: <input type = "text" id = "email" name = "EmailId"><br>
+                <br>
+                Password: <input type = "password" id = "p" name="password1"><br>
+                <br>
+                Re-enter Password: <input type = "password" id = "rp"><br>
+                <br>
+                UserType:
+                <select id="tou" name="userType">
+                    <option value = "--select--">--select--</option>
+                    <option value = "admin">admin</option>
+                    <option value = "user">user</option>    
+                </select><br>
+                <br>
+                <input type = "submit" value="SUBMIT">
+            </div>
+        </form>
+    </body>
+</html>

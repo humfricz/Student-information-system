@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+
+{% block content %}
+	<br>
+	{% if song != null %}
+		<audio controls >
+			<source src="/static/assets/{{song.thumbnail}}" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+		{% if username %}
+			<a href="/mymusic/addtolist/{{song.id}}"><input type="button" value="addtolist"></a>
+		{% endif %}
+	{% else %}
+		<p>lol po ra jaffa</p>
+	{% endif %}
+{% endblock %}

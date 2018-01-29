@@ -1,0 +1,14 @@
+{% extends "home.html" %}
+{% block content %}
+	{% if songs %}
+		{% for song in songs %}
+			<h6><a href="/mymusic/play/{{ song.id }}/">{{song.thumbnail}}</a></h6>
+			{% if username != null %}
+				<a href="/mymusic/addtolist/{{ song.id }}/"><input type="submit" value = "addtolist"></a></p>
+			{% endif %}
+		{% endfor %}
+	{% else %}
+		<br><br><br><br>
+		<b><center><p>Sorry peeps...! No song available for now... Stay tuned, we will be bringing yu the best</p></center></b>
+	{% endif %}
+{% endblock %}

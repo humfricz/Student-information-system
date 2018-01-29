@@ -1,0 +1,54 @@
+<html>
+<head>
+	<title>TRANSCRIPT GENERATION </title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body style="background-image:url(/static/transcriptG/images/night.jpg); background-size: 100%; background-repeat: no-repeat;">
+	<div>
+	<div><center><img src = "/static/transcriptG/images/msit.png" width=40% height=15%></center></div>
+	<!-- <form method ="POST" action = "homevalidate()" id="index"> --><center><br><br><br><br><br>
+	<font face= "verdena bold" color="#383838  " ><h2><u>Login</u></h2>	</font>
+	{% csrf_token %}
+	User ID 	: <input type="text" id="id"><br><br>
+	Password	: <input type="password" id = "pswd"><br><br>
+	<input type = "submit" value ="login" onclick = "homevalidate1()">
+	<!-- <input type = "button" name="register" value ="register"> -->
+	<a href = "/transcriptG/register"><input type = "button" name="register" value ="register"></a>
+	</center><!-- </form> -->
+	</div>
+
+<script>
+   function homevalidate1(){
+   		 // alert('deepak')
+       $.ajax({
+           url : "/transcriptG/homevalidate/", // the endpoin
+           type : "GET", // http method
+           data : {email:$("#id").val(),
+                 password:$("#pswd").val(),
+            }, // data sent with the post request
+           // handle a successful response
+           success : function(json) {
+             
+               //alert(json) // log the console.log("success"); // another sanity check
+               if(json == 'true')
+                 window.location.href = '/admin';
+               else if(json == 'false')
+               	 alert('not admin')
+               else if(json == 'none')
+               	 alert('not registered please register ........')
+               $("#id").val('');
+               $("#pswd").val('');
+
+           },
+           // handle a non-successful response
+           error : function(xhr,errmsg,err) {
+               $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                   " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+               alert(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+           }
+       });
+     };
+ </script>
+
+</body>
+</html

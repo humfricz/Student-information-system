@@ -1,0 +1,68 @@
+{% load static %}
+<html>
+<head><title>home</title>
+	<link rel="stylesheet" type="text/css" href="{% static "assets/css/default.css"%}">
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class = "homepage">
+		<div class = "top">
+			<div class = "logo"><img src = "{% static "assets/images/logo.png"%}" width = "100%" height = "100%"></img></div>
+			<div class = "title">
+				<div class= "pics">
+					<marquee behavior="scroll" direction="left" scrolldelay = "0" loop = "INFINITE" scrollamount = "20">
+						<img src="{% static "assets/images/1.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/2.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/3.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/4.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/5.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/6.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/7.jpg"%}" width = "20%" height = "100%">
+					</marquee>		
+				</div>
+				<div class= "signin">
+					<div class = "login">
+						<!-- <button type="button" class="btn btn-default" >Sign-in</button> -->
+						<input type="image" id="myimage" style="height:100%;width:100%;" src="{% static "assets/images/login.png"%}" />
+					</div>
+					<div class = "signup">
+						<!-- <button type="button" class="btn btn-default" >Sign-Up</button> -->
+						<input type="image" id="newuser" style="height:100%;width:100%;" src="{% static "assets/images/sign-up.png"%}" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class = "bottom">
+			<div class = "lang-panel">
+				<ul class = "langlist">
+					<br> <br>
+  					<li><button class="lang"><span>Telugu </span></button></li>
+  					<li><button class="lang"><span>Hindi </span></button></li>
+  					<li><button class="lang"><span>English </span></button></li>
+  					<li><button class="lang"><span>Tamil </span></button></li>
+  					<li><button class="lang"><span>Malyalam </span></button></li>
+				</ul>
+			</div>
+			<div class = "result">
+				<div class = "search">
+					<div class = "searchbar">
+							<form action="" method="">
+							<br>   
+								<p><input type="search" placeholder="Search for songs by album/artist/genre...."></p>
+								<button>Search</button>
+							</form>
+					</div>
+					<div class = "content">
+						{% block content %} {% endblock %}
+					</div>
+				</div>
+				<div class = "sidebar">{% block sidebar %} {% endblock %}</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

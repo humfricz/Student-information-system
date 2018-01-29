@@ -1,0 +1,444 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    
+    <title>SIS</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static "sis/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{% static "sis/css/mdb.min.css" %}"rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="{% static "sis/css/homeStyle.css" %}"rel="stylesheet">
+
+</head>
+<body>
+    <div style="display:flex;">
+        <!-- for title and logos -->
+        <!-- for iiit-logo  -->
+        <div >
+            <img src="{% static "sis/img/logos/iiit-logo.png" %}" alt="iiit-logo" width="175" height="100">
+        </div>
+
+        <div style="margin-top:2%; margin-left:5%;">
+        <!-- this is for headings of the web page like letter head-->
+            <h2> &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp Consortium of Institutions of Higher Learning<br>
+            <center>MSIT - IIITH</center></h2>
+
+        </div>
+        <!-- for MSIT-logo  -->
+        <!-- <div style="margin-left:3%;">
+            <img src="{% static "sis/img/logos/MSIT-logo.png" %}" alt="MSIT-logo" width="220" height="130">
+        </div> -->
+    </div>
+    <div style="border:solid;"> 
+        <div style="border: solid; display:flex; ">
+            <div class="col-lg-2" style= "outline: 1px solid  !important ;position:relative;" class="well">
+                <div class="well well-sm">
+                    <h1><b><label class="list-group-item" style="margin-top:12%;font-size: 16px;"> Student Details </label></b></h1>
+                    <hr >
+
+                    <div style= " margin-top: 35px ;" >
+                        <form action="/sis/studentInfo/" method="POST" name="studentInfo"> {% csrf_token %}
+                            <button class="btn btn-primary myWaves-effect myWaves-light" type="submit" name="action"><b class="material-icons right" width="50"  onclick="showDiv();">Student Info</b></button>
+                        </form>
+                    </div>
+                    <div style= " margin-top: 15px ;">
+                        <form name = "batchInfo" method = "POST" onsubmit="get_action(this)"> {% csrf_token %}
+                            <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Batch Info</b></button>
+                        </form>
+                    </div>
+                    <div style= " margin-top: 15px ;">
+                        <form name = "marksInfo" method = "POST" onsubmit="get_marks(this)"> {% csrf_token %}
+                            <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"> <b class="material-icons right" >Marks sheet</b></button>
+                        </form>
+                    </div>
+                   <div style= " margin-top: 15px ;">
+                       <form action="/sis/Transcript/" method ="post">{% csrf_token %}
+                       <button class="btn btn-primary waves-effect waves-light" type="submit" name="Transcript" ><b class="material-icons right">Print transcript</b></button>
+                       </form>
+                   </div>
+                    <div style= " margin-top: 15px;">
+                       <form method = "post" action = "/sis/bulkTranscript/" > {% csrf_token %}
+                           <button class="btn btn-primary waves-effect waves-light" type="submit" name="action"><b class="material-icons right">Bulk</b></button>
+                       </form>
+                   </div>
+                </div>
+                
+            </div>
+
+            <div style="outline:1px solid black !important"></div>
+
+            <div style="width:840px;">
+                <div class = "well well-sm " style="margin-top:1%;">
+                   <form class="form-inline" style="margin-left:10%;margin-top:1.8%;" method="post" action="/sis/studentInfo/" >  {% csrf_token %}
+                       <div id="page-wrapper">
+                           <input type="text" name = "searchID" list="languages" placeholder="Enter the student Roll no." class="col-lg-3" required="required" style="width:220px;margin-left:20%;">
+                               <datalist id="languages">
+                                   {% if students %}
+                                       {% for x in students %}
+                                       <option value = "{{x.SID}}"> </option>  
+                                       {% endfor %}
+                                   {% endif %}
+                               </datalist>
+                       </div>
+
+                       <div style="margin-left:5%;">
+                           <button class="btn btn-primary" name="studentInfo" style="margin-left:8%;" onclick="showDiv()" ><b class="material-icons right">Search</b> </button>
+                       </div>
+                   </form>
+                </div>
+                <div>
+                    
+                </div>
+                <div id="welcomeDiv"   style="border:solid;height:600px;" class="answer_list">
+                    {% if student %}
+                    <center><h4 style="margin-top:2%;"> Student details </h4></center>
+                    {% endif %}
+                    <div class=" " style="display:flex;margin-left:15%;margin-top: 2%;margin-right:10%;">
+                        <div class="list-group z-depth-3" style="width:800px;">
+                          {% if student %}
+                            <form name="clanguage" method="post" action="/topics">
+                                
+                            <!-- </form> -->
+                            <!-- <form name="java" method="post" action="/clanguage"> -->
+                                <p type = "text" class="list-group-item "><label style="font-size:110%;"><b> Roll No &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: &nbsp&nbsp&nbsp</b></label> {{student.SID}}</p>
+                            <!-- </form> -->
+                            <!-- <form name="databases" method="post" action="/databases"> -->
+                                <p  type = "text" class="list-group-item "> <label style="font-size:110%;"> <b>First Name &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp: &nbsp&nbsp&nbsp</b></label> {{student.firstname}}</p>
+                            <!-- </form> -->
+                            <!-- <form name="" method="post" action="/datastructures"> -->
+                                <p type = "text" class="list-group-item "> <label style="font-size:110%;"> <b>Last Name &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp:&nbsp&nbsp&nbsp&nbsp</b></label> {{student.lastname}}</p>
+                            <!-- </form> -->
+                            <!-- <form name="clanguage" method="post" action="/webtechnologies"> -->
+                                <p type = "text" class="list-group-item "> <label style="font-size:110%;"> <b>Email&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: &nbsp&nbsp&nbsp</b></label> {{student.emailid}} </p>
+                            <!-- </form> -->
+                            <!-- <form name="clanguage" method="post" action="/android"> -->
+                                <p type = "text" class="list-group-item "> <label style="font-size:110%;"> <b>Contact No &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: &nbsp&nbsp&nbsp</b></label> {{student.phnum}}</p>
+                            <!-- </form> -->
+                            <!-- <form name="clanguage" method="post" action="/python"> -->
+                                <p  type = "text" class="list-group-item "> <label style="font-size:110%;"> <b> Year of Joining &nbsp: &nbsp&nbsp&nbsp</b></label> {{student.yearofjoining}} </p>
+                            <!-- </form> -->
+                            <!-- <form name="clanguage" method="post" action="/php"> -->
+                                <p  type = "text" class="list-group-item "> <label style="font-size:110%;"> <b> Year of passing : &nbsp&nbsp&nbsp</b></label> {{student.yearofpassing}}</p>
+
+                                <p class="list-group-item "> <label style="font-size:110%;"> <b> Batch No &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: &nbsp&nbsp&nbsp</b></label> {{student.batchNo}} </p>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="batchInfoDiv" style="height:550px;margin-top:-68%;overflow-y: scroll;" class="answer_list">
+           
+                   <div class="" style="margin-left:10%;margin-right:10%;">
+                       {% if all_studs %}
+                       <label style="margin-left:5%;font-size:18px;">Batch details of : &nbsp</label><b> {{pid}}</b>
+                       {% for x in all_studs%}
+                           <div class="list-group-item z-depth-2">
+                               <p style="margin-top:2%;"> {{x.SID }} : {{x.firstname}} {{x.lastname}}</p>
+                           </div>
+                       {% endfor%} 
+                       {% endif %}
+                   </div>
+               </div>
+
+                <div id="marksinfo" style="height:600px;margin-top:-70%;display:" class="container">
+                   <div class="" style="margin-left:10%;margin-right:10%;">
+                       {% if name and id %}
+                           <p style="margin-top:2%;">
+                           <label style="color:blue;font-size:18px">Name: </label><b> <u> {{name}}</u>&nbsp&nbsp&nbsp&nbsp&nbsp</b> <br><label style="color:blue;font-size:18px">ID: </label><b> <u>{{id}}</u></b></p>
+                      
+                      <table class="table table-striped table-bordered table-hover table-condensed">
+                           <thead>
+                             <tr>
+                               <th>Course</th>
+                               <th>Grade</th>
+                               <th>Credits</th>
+                             </tr>
+                           </thead>
+                           {% for x,y,z in result %}
+                              <!-- <div class="list-group-item"> -->
+                              <!-- <p style = "margin-top:2%;" > {{x}} : {{y}} : {{z}}</p> -->
+                               <tbody>
+                                 <tr>
+                                   <td>{{x}}</td>
+                                   <td>{{z}}</td>
+                                   <td>{{y}}</td>
+                                 </tr>
+                               </tbody>
+                              
+                           <!-- </div> -->
+                       {% endfor %}
+                         </table>
+                       {% endif %}
+                   </div>
+
+               </div>
+                 
+                <div id="welcomeDiv1"   style="border:solid;height:600px;display:none;" class="answer_list">
+                    &nbsp ---------------------------------------------------------------------------------------center page-------------------------------------------------------------------------------
+                    <br><br><br><br><br>
+                        <center>
+                        <form id="uploadbanner" enctype="multipart/form-data" method="post" action="/sis/studentMarkslist/" name = "studentMarkslist"> {% csrf_token %}
+                            <center><div><h3> Upload the Courses file here...</div></center>
+                            <div style="display:flex; border:solid #0099CC;border-radius:3%; margin-left:20%;margin-right:20%; ">
+                                <div style=" margin-left:4%; margin-top:2%; text-size:15%;">
+                                     <b><input id="fileupload" name="myfile" type="file"  /> </b>
+                                </div>
+                                    <button class="btn btn-primary" /><b class="material-icons right">Upload</b> </button>
+                                </div>
+                            </div>  
+                                <div style=" ">
+                        </form>
+                        </center>
+
+                </div>
+
+
+                <div id="welcomeDiv2"   style="border:solid;height:600px;display:none;" class="answer_list">
+                    &nbsp ---------------------------------------------------------------------------------------center page-------------------------------------------------------------------------------
+                     <br><br><br><br><br>
+                        <center>
+                         <form class="form-inline"  method="POST" >{% csrf_token %}
+                            <center><div><h3> Upload the scores file here...</div></center>
+                            <div style="display:flex; border:solid #0099CC;border-radius:3%; margin-left:20%;margin-right:20%; ">
+                                <div style=" margin-left:4%; margin-top:2%; text-size:15%;">
+                                     <b><input id="fileupload" name="myfile" type="file"  /> </b>
+                                </div>
+                                    <button class="btn btn-primary" /><b class="material-icons right">Upload</b> </button>
+                                </div>
+                            </div>  
+                                <div style=" ">
+                        </form>
+                        </center>
+                </div>
+
+                <div id="welcomeDiv3"   style="border:solid;height:600px;display:none;" class="answer_list">
+                    &nbsp ---------------------------------------------------------------------------------------center page-------------------------------------------------------------------------------
+            
+                    <form class="form-inline" style="margin-left:10%;margin-top:8%;" method="POST" name = "changepassword" action="/sis/changepassword">{% csrf_token %}
+                        
+                        <!-- <INPUT type="text" name="sample" /> -->
+                        <center> 
+                            <div><h3>Change password </h3>
+                            </div>
+                        </center>
+                        <div class="md-form form-group">
+                                <i class="fa fa-lock prefix"></i>
+                                <input name = "oldpassword" type="password" id="form92" class="form-control validate">
+                                <label for="form92" >old password</label>
+                        </div><br>
+
+                        <div class="md-form form-group">
+                                <i class="fa fa-lock prefix"></i>
+                                <input name = "password1" type="password" id="form92" class="form-control validate">
+                                <label for="form92" >New password</label>
+                        </div><br>
+
+                        <div class="md-form form-group">
+                            <i class="fa fa-lock prefix"></i>
+                            <input name = "password2" type="password" id="form92" class="form-control validate">
+                            <label for="form92" >Repeat new password</label>
+                        </div>
+                            <!-- <input  class= "btn btn-primary waves-effect waves-light" type="submit" name="submit" value="submit" /> -->
+
+                        <button class="btn btn-primary " type="submit" name="submit" style="margin-left:30%;">Change</button>
+                    </form>
+                </div>
+
+                <div id="gradingDiv"   style="border:solid;height:600px;display:none;" class="answer_list">
+                   <form class="form-inline" style="margin-left:10%;margin-top:2%;" method="POST" name = "Gradingsystem" action="/sis/Gradingsystem">{% csrf_token %}
+                       
+                       <!-- <INPUT type="text" name="sample" /> -->
+                       <center> 
+                           <div><h3>Grading criteria </h3>
+                           </div>
+                       </center>
+                       <div style="">
+                           <div>
+                               <p style="margin-top:2%;"><i> <h5 style="color:blue;">Example for Batch entry : </h5> Year of the batch i.e if 2015-17 then </i><b>" 2015 "</b></p>
+                               <div class="md-form form-group">
+                                       <i class="fa fa-user prefix"></i>
+                                       <input name = "batchId" type="number" id="form92" class="form-control validate" style="width:150%;">
+                                       <label for="form92" >Batch :</label>
+                               </div><br>
+                               <p style="margin-top:2%;"><h5 style="color:blue;"><i> Example for Grades entry : </i></h5>  "<b>  EX:10.0,A+:9.5,A:9.0,B+:8.5,B:8.0,B-:7.5,C:7.0 without quotes </b>"</p>
+                               <div class="md-form form-group">
+                                       <i class="fa fa-book prefix"></i>
+                                       <input name = "grades" type="text" id="form92" class="form-control validate" style="width:150%;">
+                                       <label for="form92" >Enter the Grades</label>
+                               </div><br>
+                               <!-- <input  class= "btn btn-primary waves-effect waves-light" type="submit" name="submit" value="submit" /> -->
+                               <br>
+                               <button class="btn btn-primary " type="submit" name="submit" style="margin-left:10%;">Enter</button>
+                           </div>
+                       </div>
+                   </form>
+               </div>
+
+            </div>
+            
+            <div style="outline:1px solid black !important"></div>
+            
+            <div class="col-lg-2" >
+                <div class="well well-sm">
+                    <h1><b><label class="list-group-item" style="margin-top:12%;font-size: 16px;"> Upload here </label></b></h1>
+                    <hr>
+                    <div style= " margin-top: 35px ;">
+                   <button class="btn btn-success waves-effect waves-light" type="submit" name="answer" value="Show Div" onclick="showGrading()">
+                   <b class="material-icons right">Grading Criteria</b> </button>
+                   </div>
+                    <div style= " margin-top: 15px ;">
+                    <button class="btn btn-primary waves-effect waves-light" type="submit" name="answer" value="Show Div" onclick="document.location.href='/sis/list'"><b class="material-icons right">Upload Students</b></button></div>
+                    <!-- <input type="button" name="answer" value="Show Div" onclick="showDiv()" /> -->
+                    <div style= " margin-top: 15px ;">
+                    <button class="btn btn-primary waves-effect waves-light" type="submit" name="answer" value="Show Div1" onclick="document.location.href='/sis/courseList'"><b class="material-icons right">Upload Courses</b></button></div>
+                    <div style= " margin-top: 15px ;">
+                    <button class="btn btn-primary waves-effect waves-light" type="submit" name="answer" value="Show Div2" onclick="document.location.href='/sis/studentMarkslist'"><b class="material-icons right">Upload Scores</b></button></div>
+                    <div style= " margin-top: 15px ;">
+                    <button class="btn btn-primary waves-effect waves-light" type="submit" name="answer" value="Show Div3" onclick="showDiv3()"><b class="material-icons right">change password</b></button></div>
+                    <div style= " margin-top: 15px ;">
+                    <button class="btn btn-primary " type="submit" name="logout" onclick="document.location.href='/sis/logout'" >Logout</button></div>
+                    <!-- onClick="/logout"  -->
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <center>
+                <div class="container-fluid">
+                    © 2016 Copyright: <a href="http://www.msitprogram.net/"> MSIT-IIITH</a>
+                </div>
+            </center>
+        </div>
+    </div>
+    <!-- SCRIPTS -->
+
+    <script type="text/javascript" src=" {% static "sis/js/jquery-2.2.3.min.js" %}"></script>
+
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static "sis/js/tether.min.js" %}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static "sis/js/bootstrap.min.js" %}"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static "sis/js/mdb.min.js" %}"></script>
+
+    
+    <script type="text/javascript">
+        function get_action(form) {
+            form.action = "/sis/batchInfo/"
+            document.getElementById('welcomeDiv').style.display = "none";
+            document.getElementById('batchInfoDiv').style.display = "block";
+            document.getElementById('welcomeDiv1').style.display = "none";
+            document.getElementById('welcomeDiv2').style.display = "none";
+            document.getElementById('welcomeDiv3').style.display = "none";
+            document.getElementById('marksinfo').style.display = "none";
+        }
+    </script>
+
+     <script type="text/javascript">
+        function get_marks(form) {
+            form.action = "/sis/markssheet/"
+            document.getElementById('marksinfo').style.display = "block";
+            document.getElementById('welcomeDiv').style.display = "none";
+            document.getElementById('batchInfoDiv').style.display = "none";
+            document.getElementById('welcomeDiv1').style.display = "none";
+            document.getElementById('welcomeDiv2').style.display = "none";
+            document.getElementById('welcomeDiv3').style.display = "none";
+            document.getElementById('marksinfo').style.display = "none";
+        }
+    </script>
+
+    <script type="text/javascript">
+    
+    function showDiv() {
+        document.getElementById('marksinfo').style.display = "none";
+        document.getElementById('welcomeDiv').style.display = "block";
+        document.getElementById('batchInfoDiv').style.display = "none";
+        document.getElementById('welcomeDiv1').style.display = "none";
+        document.getElementById('welcomeDiv2').style.display = "none";
+        document.getElementById('welcomeDiv3').style.display = "none";
+    }
+    </script>
+
+    <script type="text/javascript">
+    function showDiv0() {
+        
+
+                // if (document.getElementById('batchInfoDiv').style.display == 'none') {
+                //     document.getElementById('batchInfoDiv').style.display = 'block';
+                //     document.getElementById('welcomeDiv').style.display = 'none';
+                // }
+                
+        document.getElementById('marksinfo').style.display = "none";
+        document.getElementById('batchInfoDiv').style.display = "block";
+        document.getElementById('welcomeDiv1').style.display = "none";
+        document.getElementById('welcomeDiv2').style.display = "none";
+        document.getElementById('welcomeDiv').style.display = "none";
+        document.getElementById('welcomeDiv3').style.display = "none";
+    }
+    </script>
+
+    <script type="text/javascript">
+    function showDiv1() {
+      document.getElementById('marksinfo').style.display = "none";
+        document.getElementById('welcomeDiv1').style.display = "block";
+        document.getElementById('welcomeDiv').style.display = "none";
+        document.getElementById('batchInfoDiv').style.display = "none";
+        document.getElementById('welcomeDiv2').style.display = "none";
+        document.getElementById('welcomeDiv3').style.display = "none";
+    }
+    </script>
+
+    <script type="text/javascript">
+    function showDiv2() {
+      document.getElementById('marksinfo').style.display = "none";
+        document.getElementById('welcomeDiv2').style.display = "block";
+        document.getElementById('welcomeDiv1').style.display = "none";
+        document.getElementById('welcomeDiv').style.display = "none";
+        document.getElementById('batchInfoDiv').style.display = "none";
+        document.getElementById('welcomeDiv3').style.display = "none";
+    }
+    </script>
+
+    <script type="text/javascript">
+    function showDiv3() {
+      document.getElementById('marksinfo').style.display = "none";
+        document.getElementById('welcomeDiv3').style.display = "block";
+        document.getElementById('welcomeDiv1').style.display = "none";
+        document.getElementById('welcomeDiv').style.display = "none";
+        document.getElementById('batchInfoDiv').style.display = "none";
+        document.getElementById('welcomeDiv2').style.display = "none";
+    }
+
+    </script>
+
+    <script type="text/javascript">
+       
+       function showGrading() {
+            document.getElementById('marksinfo').style.display = "none";
+           document.getElementById('gradingDiv').style.display = "block";
+           document.getElementById('batchInfoDiv').style.display = "none";
+           document.getElementById('welcomeDiv').style.display = "none";
+           document.getElementById('welcomeDiv1').style.display = "none";
+           document.getElementById('welcomeDiv2').style.display = "none";
+           document.getElementById('welcomeDiv3').style.display = "none";
+       }
+       </script>
+
+</body>
+
+</html>

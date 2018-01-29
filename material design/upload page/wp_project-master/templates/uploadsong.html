@@ -1,0 +1,9 @@
+{% extends "home.html" %}
+{% block content %}
+<form action="/mymusic/create/" method="post" enctype="multipart/form-data">{% csrf_token %}
+<ul>
+{{form.as_p}}
+</ul>
+<input type="submit" name="submit" value="Upload song">
+</form>
+{% endblock %}

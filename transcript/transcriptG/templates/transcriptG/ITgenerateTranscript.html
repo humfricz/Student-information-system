@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>TRANSCRIPT GENERATION </title>
+</head>
+<body style="background-image:url(/static/transcriptG/images/night.jpg); background-size: 100%; background-repeat: no-repeat;">
+	<div>
+	<form method ="GET" action = "/transcriptG/calculateGPA/" id="index"><center><br><br><br><br><br>
+	
+	{% csrf_token %}
+	<input type="text" name="stud_id">
+	<input type = "submit" value ="Generate Transcript">
+	</center></form>
+	</div>
+</body>
+
+</html>

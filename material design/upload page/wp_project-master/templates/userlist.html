@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+{% block sidebar %}
+{% if username != null %}
+	<br>
+	<a href="/mymusic/logout/"><input type="submit" value = "logout"></a>
+	<hr>
+	<h3>Your Playlist</h3>
+	<hr>
+	{% for song in playlist %}
+		<div>
+			<ul><li><h5><a href="/mymusic/play/{{ song.songName.id }}/">{{song.songName.thumbnail}}</a></h5></li></ul>
+		</div>
+	{% endfor %}
+{% else %}
+	<a href="/mymusic/login">yu need to log in to view the playlist</a>
+{% endif %}
+{% endblock %}

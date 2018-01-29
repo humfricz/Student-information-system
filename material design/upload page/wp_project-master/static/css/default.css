@@ -1,0 +1,114 @@
+.top {
+	display: flex;
+	width: 100%;
+	height: 20%;
+}
+.logo {
+	width:20%;
+	height:100%;
+	background-color: black;
+}
+.title{
+	display: flex;
+	width: 80%;
+	height: 100%;
+}
+.pics {
+	width: 70%;
+	height: 100%;
+}
+.posters {
+	width: 20%;
+	height: 100%;
+}
+.signin {
+	display:flex;
+	width: 30%;
+	height: 100%;
+	background-color: black;
+}
+.login {
+	width: 50%;
+	height: 100%;
+	text-align: center;
+    top: 50%;
+    margin:0 auto;
+}
+.signup {
+	width:50%;
+	height: 100%;
+}
+.bottom {
+	display: flex;
+	width: 100%;
+	height:80%;
+}
+.lang-panel {
+	width: 20%;
+	height: 100%;
+}
+.result {
+	display:flex;
+	width: 80%;
+	height: 100%;
+}
+.search {
+	width: 70%;
+	height: 100%;
+}
+.sidebar {
+	width: 30%;
+	height: 100%;
+}
+.searchbar {
+	background: #151515;
+	height: 20%;
+	text-align: center;
+	width: 100%;
+}
+.content {
+	height: 80%;
+	width: 100%;
+	background-color: lightgreen;
+}
+.langlist {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+}
+.lang {
+  border-radius: 4px;
+  background-color: #66CC00;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 100%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.lang span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.lang span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.lang:hover span {
+  padding-right: 25px;
+}
+.lang:hover span:after {
+  opacity: 1;
+  right: 0;
+}

@@ -1,0 +1,84 @@
+{% load static %}
+<html>
+<head><title>home</title>
+	<link rel="stylesheet" type="text/css" href="{% static "assets/css/default.css"%}">
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class = "homepage">
+		<div class = "top">
+			<div class = "logo">
+				<a href="/mymusic/home"><h1>The Music</h1></a>
+			</div>
+			<div class = "title">
+				<div class= "pics">
+					<marquee behavior="scroll" direction="left" scrolldelay = "0" loop = "INFINITE" scrollamount = "20">
+						<img src="{% static "assets/images/1.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/2.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/3.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/4.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/5.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/6.jpg"%}" width = "20%" height = "100%">
+						<img src="{% static "assets/images/7.jpg"%}" width = "20%" height = "100%">
+					</marquee>		
+				</div>
+				<div class= "signin">
+					{% if username != null %}
+						<h4>{{username}}</h4>
+						<br><br>
+						<a href="/mymusic/logout"><input type="submit" value = "logout"></a>
+					{% else %}
+						<div class = "login" >
+							{% block login %}
+									<a href="/mymusic/signin"><input type="button" value = "SIGNIN"></a>
+							{% endblock %}
+						</div>
+						<div class = "signup">
+							{% block signup %}
+							<a href="/mymusic/signup"><input type="button" value = "SIGNUP"></a>
+							{% endblock %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		<div class = "bottom">
+			<div class = "lang-panel">
+				<ul class = "langlist">
+					<br> <br>
+						<a href="/mymusic/search/telugu"><input type="submit" value = "Telugu"></a><br><br>
+						<a href="/mymusic/search/hindi"><input type="submit" value = "hindi"></a><br><br>
+						<a href="/mymusic/search/english"><input type="submit" value = "english"></a><br><br>
+						<a href="/mymusic/search/tamil"><input type="submit" value = "tamil"></a><br><br>
+						<a href="/mymusic/search/malayalam"><input type="submit" value = "malayalam"></a><br><br>
+				</ul>
+			</div>
+			<div class = "result">
+				<div class = "search">
+					<div class = "searchbar" style:"display:inline-block;">
+							<form action="/mymusic/search/" method="GET">
+							<br>   
+								<input type="search" placeholder="Search for songs by album/artist/genre...."name="search">
+								<button>Search</button>
+							</form>
+					</div>
+					<div class = "content">
+						{% block content %} {% endblock %}
+					</div>
+				</div>
+				<div class = "sidebar">{% block sidebar %} 
+					{% if username == null %}
+						<a href="/mymusic/adminlogin"><input type="submit" value = "adminLogin"></a>
+						<hr>
+						<br>						
+					{% endif %}
+					{% endblock %}</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
